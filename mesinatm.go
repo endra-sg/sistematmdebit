@@ -22,6 +22,31 @@ func TabelMenu() {
 	fmt.Println("MENAMPILKAN SELURUH DATA ADMIN")
 
 }
+func setortunainasabah(A *tabRekening,n *int){
+	if A[i].noRekening == noRekening {
+		fmt.Println("MASUKAN NOMINAL UANG YANG AKAN DI SETOR: ")
+		fmt.Scan(&nominalsetor)
+	A[i].saldo = A[i].saldo + nominal
+	fmt.Println("SALDO TELAH BERHASIL DI SETOR")
+	fmt.Println("SALDO SEKARANG :",A[i].saldo)
+	}
+}
+func Insertionshortbysaldo(A *TabRekening, n int){
+	var i,pass int
+	var temp rekening
+
+	pass = 1
+	for pass && n-1 {
+		i = pass
+		pass = A[pass]
+		for i > 0 && temp.saldo > A[i-1].saldo {
+			A[i] = A[i-1]
+			i = i + 1
+		}
+		A[i] = pass
+		pass = pass + 1
+	}
+}
 func validasilogin() bool {
 	var username string
 	var password string
