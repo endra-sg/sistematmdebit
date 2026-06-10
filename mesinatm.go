@@ -27,7 +27,52 @@ func tabelMenu() {
 	fmt.Println("9. Keluar")
 	fmt.Print("Pilih Menu : ")
 }
+func insertionSortByNama(A *TabRekening, n int) {
+	var pass, i int
+	var temp rekening
 
+	pass = 1
+
+	for pass < n-1 {
+
+		temp = A[pass]
+		i = pass
+
+		for i > 0 && temp.nama > A[i-1].nama {
+			A[i] = A[i-1]
+			i = i - 1
+		}
+
+		A[i] = temp
+		pass = pass + 1
+	}
+
+	fmt.Println("Data Berhasil Diurutkan Berdasarkan Nama")
+}
+func binarysearchNama(A *TabRekening, n int, nama string) {
+	var mid, left, right int
+	var found int
+	left = 1
+	right = n
+	found = -1
+	for left <= right && found == -1 {
+		mid = (left + right) / 2 
+		if nama < A[mid].nama {
+			right = mid - 1
+		} else if nama > A[mid].nama {
+			left = mid + 1
+		} else {
+			found = mid
+		}
+			if found != -1 {
+		fmt.Println("Data ditemukan")
+		fmt.Println("No Rekening :", A[found].noRekening)
+		fmt.Println("Nama        :", A[found].nama)
+		fmt.Println("Saldo       :", A[found].saldo)
+	} else {
+		fmt.Println("Data tidak ditemukan")
+	}
+} 
 func validasiLogin(statusLogin *bool) {
 	var username, password string
 	var percobaan int
@@ -312,12 +357,14 @@ func main() {
 				insertionSortBySaldo(&data, n)
 
 			case 7:
-				cariRekening(data, n)
-
+				insertionSortByNama(&data, n)
+				tampilData(data, n)
 			case 8:
+				cariRekening(&data,n)
+			case 9:
 				tampilData(data, n)
 
-			case 9:
+			case 10:
 				selesai = true
 				fmt.Println("Terima Kasih")
 
