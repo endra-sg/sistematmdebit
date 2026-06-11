@@ -22,32 +22,11 @@ func tabelMenu() {
 	fmt.Println("4. Setor Tunai")
 	fmt.Println("5. Tarik Tunai")
 	fmt.Println("6. Urutkan Berdasarkan Saldo")
-	fmt.Println("7. Cari Rekening")
-	fmt.Println("8. Tampilkan Semua Data")
-	fmt.Println("9. Keluar")
+	fmt.Println("7. Urutkan Berdasarkan Nama")
+	fmt.Println("8. Cari Rekening")
+	fmt.Println("9. Tampilkan Semua Data")
+	fmt.Println("10. Keluar")
 	fmt.Print("Pilih Menu : ")
-}
-func insertionSortByNama(A *TabRekening, n int) {
-	var pass, i int
-	var temp rekening
-
-	pass = 1
-
-	for pass < n-1 {
-
-		temp = A[pass]
-		i = pass
-
-		for i > 0 && temp.nama > A[i-1].nama {
-			A[i] = A[i-1]
-			i = i - 1
-		}
-
-		A[i] = temp
-		pass = pass + 1
-	}
-
-	fmt.Println("Data Berhasil Diurutkan Berdasarkan Nama")
 }
 func binarysearchNama(A *TabRekening, n int, nama string) {
 	var mid, left, right int
@@ -56,7 +35,7 @@ func binarysearchNama(A *TabRekening, n int, nama string) {
 	right = n
 	found = -1
 	for left <= right && found == -1 {
-		mid = (left + right) / 2 
+		mid = (left + right) / 2
 		if nama < A[mid].nama {
 			right = mid - 1
 		} else if nama > A[mid].nama {
@@ -64,15 +43,9 @@ func binarysearchNama(A *TabRekening, n int, nama string) {
 		} else {
 			found = mid
 		}
-			if found != -1 {
-		fmt.Println("Data ditemukan")
-		fmt.Println("No Rekening :", A[found].noRekening)
-		fmt.Println("Nama        :", A[found].nama)
-		fmt.Println("Saldo       :", A[found].saldo)
-	} else {
-		fmt.Println("Data tidak ditemukan")
+
 	}
-} 
+}
 func validasiLogin(statusLogin *bool) {
 	var username, password string
 	var percobaan int
@@ -319,6 +292,7 @@ func tampilData(A TabRekening, n int) {
 }
 
 func main() {
+	var nama string
 	var data TabRekening
 	var n int
 	var pilihan int
@@ -357,16 +331,19 @@ func main() {
 				insertionSortBySaldo(&data, n)
 
 			case 7:
-				insertionSortByNama(&data, n)
-				tampilData(data, n)
+				insertionSortBySaldo(&data, n)
+				binarysearchNama(&data, n, nama)
+
 			case 8:
-				cariRekening(&data,n)
+				tampilData(data, n)
+
 			case 9:
 				tampilData(data, n)
 
 			case 10:
 				selesai = true
 				fmt.Println("Terima Kasih")
+				fmt.Println("BLOG PRIBADI https://endrasg.web.id/ ")
 
 			default:
 				fmt.Println("Menu Tidak Tersedia")
