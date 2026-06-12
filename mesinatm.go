@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 const NMAX int = 100
 
@@ -248,7 +250,24 @@ func insertionSortBySaldo(A *TabRekening, n int) {
 
 	fmt.Println("Data Berhasil Diurutkan Berdasarkan Saldo")
 }
+func insertionSortByNama(A *TabRekening, n int) {
+	var i, pass int
+	var temp rekening
 
+	pass = 1
+
+	for pass <= n-1 {
+		temp = A[pass]
+		i = pass
+		for pass > 0 && temp.nama < A[i-1].nama {
+			A[i] = A[i-1]
+			i = i - 1
+		}
+		A[i] = temp
+		pass = pass + 1
+	}
+	fmt.Println("Data Berhasil Diurutkan Berdasarkan Nama")
+}
 func cariRekening(A TabRekening, n int) {
 	var noRekening int
 	var idx int
@@ -331,7 +350,7 @@ func main() {
 				insertionSortBySaldo(&data, n)
 
 			case 7:
-				insertionSortBySaldo(&data, n)
+				insertionSortByNama(&data, n)
 				binarysearchNama(&data, n, nama)
 
 			case 8:
